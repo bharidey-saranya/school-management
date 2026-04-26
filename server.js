@@ -1,14 +1,11 @@
 const express = require("express");
 const app = express();
-const db = require("./db");
-
+const studentRoutes = require("./routes/student");
 app.use(express.json());
+app.use("/students", studentRoutes);
 
 app.get("/", (req, res) => {
-  db.query("SELECT 'Hello from MySQL!' AS message", (err, result) => {
-    if (err) return res.send(err);
-    res.json(result);
-  });
+  res.send("Server is working");
 });
 
 app.listen(3000, () => {
